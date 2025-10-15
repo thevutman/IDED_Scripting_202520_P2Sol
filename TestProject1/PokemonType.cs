@@ -29,10 +29,10 @@
 
         public Move[] Moves { get; set; }
 
-        public Pokemon(string name, PokemonType type, int level, int attack, int defense, int SpAtk, int SpDef)
+        public Pokemon(string name, int level, int attack, int defense, int SpAtk, int SpDef, params PokemonType[] types)
         {
             Name = name;
-            Types.Add(type);
+            Types = types.ToList();
             Level = level;
             Attack = attack;
             Defense = defense;
@@ -40,7 +40,7 @@
             SpDefense = SpDef;
         }
 
-        public Pokemon(string name, PokemonType type) : this(name, type, 1, 10, 10, 10, 10)
+        public Pokemon(string name, params PokemonType[] types) : this(name, 1, 10, 10, 10, 10, types)
         {
             //Name = name;
             //Types.Add(type);

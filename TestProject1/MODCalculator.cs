@@ -103,10 +103,23 @@ namespace Parcial2SCriptingPokemones.Source
         },
         };
 
+        public static double CalculateMod(Move attackingType, List<PokemonType> defendingTypes)
+        {
+            double mod = 1.0;
+            foreach (var defendingType in defendingTypes)
+            {
+                if (TypeChart.ContainsKey(attackingType.type) && TypeChart[attackingType.type].ContainsKey(defendingType))
+                {
+                    mod *= TypeChart[attackingType.type][defendingType];
+                }
+            }
+            return mod;
+        }
+
         public static double CalculateMod(List<PokemonType> attackingType, List<PokemonType> defendingTypes)
         {
             double mod = 1.0;
-            foreach (var  attackType in attackingType)
+            foreach (var attackType in attackingType)
             {
                 foreach (var defendingType in defendingTypes)
                 {

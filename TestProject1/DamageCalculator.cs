@@ -9,26 +9,26 @@ namespace TestProject1
 {
     internal static class DamageCalculator
     {
-        public static int Calculate(Pokemon attacker, Pokemon defender, Move move, double mod)
+        public static int Calculate(Pokemon attacker, Pokemon defender, Move move, float mod)
         {
-            double finalDamage;
-            double levelComponent = (2.0 * (attacker.Level / 5.0)) + 2.0;
+            float finalDamage;
+            float levelComponent = (2f * (attacker.Level / 5f)) + 2f;
 
             if (move.moveType == MoveType.Physical)
             {
-                double attackDefenseComponent = (double)move.BasePower * ((double)attacker.Attack / defender.Defense) + 2.0;
-                finalDamage = ((levelComponent * attackDefenseComponent) / 50.0);
+                float attackDefenseComponent = (float)move.BasePower * ((float)attacker.Attack / defender.Defense) + 2f;
+                finalDamage = ((levelComponent * attackDefenseComponent) / 50f);
             }
             else // Special
             {
-                double specialComponent = (double)move.BasePower * ((double)attacker.SpAttack / defender.SpDefense) + 2.0;
-                finalDamage = ((levelComponent * specialComponent) / 50.0);
+                float specialComponent = (float)move.BasePower * ((float)attacker.SpAttack / defender.SpDefense) + 2f;
+                finalDamage = ((levelComponent * specialComponent) / 50f);
             }
 
             finalDamage *= mod;
 
             // Redondear el resultado
-            return (int)Math.Floor(finalDamage);
+            return (int)Math.Round(finalDamage);
         }
     }
 }
